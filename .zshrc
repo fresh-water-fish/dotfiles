@@ -8,6 +8,7 @@ export ARCHFLAGS="-arch x86_64"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
 
 # Exit if not running interactively
 [[ $- != *i* ]] && return
