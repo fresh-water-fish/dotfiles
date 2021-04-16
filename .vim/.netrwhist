@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/seb/.local/share/openrazer/logs'
+let g:netrw_dirhist_2='/usr/lib/modprobe.d'
+let g:netrw_dirhist_1='/home/seb/.oh-my-zsh'
