@@ -468,7 +468,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Window tiling edits
-beautiful.useless_gap = 8 
+beautiful.useless_gap = 5 
 
 -- Autostart scrips
 awful.util.spawn_with_shell("xrandr --output DP-0 --mode 1920x1080 --rate 144")
