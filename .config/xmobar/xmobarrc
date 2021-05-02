@@ -1,0 +1,35 @@
+Config  { font = "xft:Mononoki-Regular:size=10:antialias=true"
+	, additionalFonts = ["xft:mononoki-Regular:size=9:antialias=true:hinting=true"
+                        ,"xft:Mononoki Nerd Font:pixelsize=10:antialias=true:hinting=true"
+                        , "xft:Font Awesome 5 Free Solid:pixelsize=10"
+                        , "xft:Font Awesome 5 Brands:pixelsize=10"
+                        ]
+    , bgColor       = "#282c34"
+    , fgColor       = "#ff6c6b"
+    , borderColor   = "black"
+    , position      = Static { xpos = 0 , ypos = 0 , width = 1920 , height = 16 }
+    , textOffset    = -1
+    , iconOffset    = -1
+    , lowerOnStart  = True
+    , pickBroadest  = False
+    , hideOnStart   = False
+    , iconRoot      = "~/Images/Icons"
+    , allDesktops   = True
+    , overrideRedirect = True
+    , persistent    = True
+    , sepChar       = "%"
+    , alignSep      = "}{"
+    , template      = " %StdinReader% }{ <fc=#b3afc2><fn=4></fn><action=`kitty -e htop`>%uname%</action></fc> <fc=#666666>|</fc> <fc=#98be65>%enp4s0%</fc> <fc=#666666>|</fc> <fc=#ee9a00>%memory%</fc> <fc=#666666>|</fc> %cpu% <fc=#666666>|</fc> <fc=#82aaff>%date%</fc>"
+
+	, commands =    [ Run Date "<fn=3>\xf133</fn> %d %b %Y %H:%M " "date" 60
+                    , Run Network "enp4s0" ["-t", "<fn=2>\xf176</fn>  <rx>kb  <fn=2>\xf175</fn>  <tx>kb"] 20
+                    , Run Cpu ["-t", "<fn=3>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                    , Run Memory  ["-t", "<fn=3>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
+                    , Run Com "uname" ["-r"] "" 3600
+                    , Run StdinReader
+                    ]
+    }
+-- additional fonts can be used with the <fn=n> tag
+-- " <icon=haskell_20.xpm/>   <fc=#666666>|</fc> %UnsafeStdinReader% }{  <fc=#666666>|</fc>  <fc=#b3afc2><fn=3></fn>  <action=`alacritty -e htop`>%uname%</action> </fc> <fc=#666666>|</fc>  <fc=#ecbe7b> <action=`alacritty -e htop`>%cpu%</action> </fc> <fc=#666666>|</fc>  <fc=#ff6c6b> <action=`alacritty -e htop`>%memory%</action> </fc> <fc=#666666>|</fc>  <fc=#51afef> <action=`alacritty -e htop`>%disku%</action> </fc> <fc=#666666>|</fc>  <fc=#98be65> <action=`alacritty -e sudo iftop`>%enp6s0%</action> </fc> <fc=#666666>|</fc>   <fc=#c678dd><fn=2></fn>  <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action> </fc> <fc=#666666>|</fc>  <fc=#46d9ff> <action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action> </fc><fc=#666666><fn=1>|</fn></fc> %trayerpad%"
+       }
+
