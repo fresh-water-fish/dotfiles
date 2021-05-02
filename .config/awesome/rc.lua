@@ -218,11 +218,11 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Web browser
-    awful.key({ modkey,           }, "b",     function () awful.util.spawn(webbrowser)         end, 
+    awful.key({ modkey,           }, "b",     function () awful.util.spawn(webbrowser)         end,
               {description = "open web browser", group = "launcher"}),
 
     -- Prompt
-    awful.key({ modkey, "Shift"   }, "Return",     
+    awful.key({ modkey, "Shift"   }, "Return",
     	      function ()
 		  awful.util.spawn("dmenu_run")
 	      end,
@@ -467,9 +467,15 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+-- {{{ Naughty
+-- disable certain notifications
+naughty.config.presets.brave = {callback = function() return false end}
+--table.insert(naughty.config.mapping, {{appname = "Brave"}, naughty.config.presets.brave})
+-- }}}
+
 -- Window tiling edits
-beautiful.useless_gap = 5 
+beautiful.useless_gap = 5
 
 -- Autostart scrips
 awful.util.spawn_with_shell("xrandr --output DP-0 --mode 1920x1080 --rate 144")
-awful.util.spawn_with_shell("polybar mainbar")
+awful.util.spawn_with_shell("sh ~/.config/polybar/launch.sh")
