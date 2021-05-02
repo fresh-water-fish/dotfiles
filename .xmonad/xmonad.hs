@@ -90,7 +90,9 @@ myTerminal = "kitty "
 myBrowser :: String
 myBrowser = "brave "
 myEditor :: String
-myEditor = myTerminal ++ " -e vim"
+myEditor = myTerminal ++ " -e nvim"
+myHtop :: String
+myHtop = myTerminal ++ " -e htop"
 myFont :: String
 myFont = "xft:Mononoki Nerd Font:regular:size=9:antialias=true:hinting=true"
 
@@ -111,20 +113,17 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
     --
---windowCount :: X (Maybe String)
---windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspaces . W.current . windowset
-
-    --
 myStartupHook :: X()
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
+    spawnOnce "picom &"
 
 myLogHook :: X()
 myLogHook = fadeInactiveLogHook fadeAmount
     where fadeAmount = 1.0
 
---myEventHook :: X()
---myEventHook = mempty
+myEventHook :: X()
+myEventHook = mempty
 
     -- Layouts
 myTabTheme  = def { fontName      = myFont
@@ -162,7 +161,7 @@ myWorkspaces        = [" dev ", " sys ", " www ", " cht ", " gms ", " xtr ", "7"
     -- Manage hook
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-             [ title      =? "Steam"           --> doShift ( myWorkspaces !! 4 )
+             [ className  =? "steam"           --> doShift ( myWorkspaces !! 4 )
              , className  =? "discord"         --> doShift ( myWorkspaces !! 3 )
              , (className =? "firefox"         <&&> resource =? "Dialog") --> doFloat
              ,className   =? "confirm"         --> doFloat
@@ -180,11 +179,10 @@ myManageHook = composeAll
 myXmobar = def
         { ppCurrent         = xmobarColor "#98be65" "" . wrap "[" "]"
         , ppVisible         = xmobarColor "#98be65" ""
-        , ppHidden          = xmobarColor "#82AAFF" "" . wrap "*" ""
+        , ppHidden          = xmobarColor "#82AAFF" "" . wrap "*" "*"
         , ppHiddenNoWindows = xmobarColor "#c792ea" ""
         , ppTitle           = xmobarColor "#b3afc2" "" . shorten 60
         , ppSep             = "<fc=#666666> <fn=2>|</fn> </fc>"
-        --, ppExtras = [windowCount]
         , ppUrgent          = xmobarColor "#C45500" "" .wrap "!" "!"
         , ppOrder = \(ws:l:t:ex) -> [ws,l]++ex++[t]
         }
@@ -198,7 +196,7 @@ myKeys =
     , ("M-C-x",   io exitSuccess)
 
         -- DMenu
-    , ("M-S-<Return>", spawn "dmenu_run")
+    , ("M-S-<Return>", spawn "dmenu_run -fn 'LiberationSerif Regular-9'")
     , ("M-p c",        spawn "dcolors")
     , ("M-p q",        spawn "dmlogout")
     , ("M-p k",        spawn "dmkill")
@@ -206,6 +204,8 @@ myKeys =
         -- Programs
     , ("M-<Return>", spawn myTerminal)
     , ("M-b",        spawn myBrowser)
+    , ("M-e v",      spawn myEditor)
+    , ("M-e h",      spawn myHtop)
 
         -- Kill windows
     , ("M-C-q", killAll)
