@@ -22,7 +22,12 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " https://github.com/junegunn/vim-plug - Examples for help on how to install plugins
 
-Plug 'preservim/nerdtree'
+    Plug 'preservim/nerdtree'
+
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -30,11 +35,11 @@ call plug#end()
 source ~/.vimrc
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	map <leader>o :setlocal spell! spelllang=en_us<CR>
+"	map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Keep selection after shift
-	vnoremap < <gv
-	vnoremap > >gv
+"	vnoremap < <gv
+"	vnoremap > >gv
 
 " NERDTree start when nvim is opened
     autocmd VimEnter * NERDTree
@@ -45,8 +50,6 @@ source ~/.vimrc
     nnoremap <C-t> :NERDTreeToggle<CR>
     nnoremap <C-f> :NERDTreeFind<CR>
 
-" Use deoplete
-    let g:deoplete#enable_at_startup = 1
 
 augroup RELOAD
 	autocmd!

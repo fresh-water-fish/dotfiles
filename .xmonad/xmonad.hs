@@ -88,11 +88,13 @@ myModMask = mod4Mask
 myTerminal :: String
 myTerminal = "kitty "
 myBrowser :: String
-myBrowser = "brave "
+myBrowser = "firefox "
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim"
 myHtop :: String
 myHtop = myTerminal ++ " -e htop"
+myGeminiBrowser :: String
+myGeminiBrowser = myTerminal ++ " -e amfora"
 myFont :: String
 myFont = "xft:Mononoki Nerd Font:regular:size=9:antialias=true:hinting=true"
 
@@ -108,7 +110,7 @@ mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
 
     -- Mouse preferences
 myFocusFollowMouse :: Bool
-myFocusFollowMouse = False
+myFocusFollowMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
@@ -126,26 +128,13 @@ myEventHook :: X()
 myEventHook = mempty
 
     -- Layouts
-myTabTheme  = def { fontName      = myFont
-            , activeColor         = "#46d9ff"
-            , inactiveColor       = "#313846"
-            , activeBorderColor   = "#46d9ff"
-            , inactiveBorderColor = "#282c34"
-            , activeTextColor     = "#282c34"
-            , inactiveTextColor   = "#d0d0d0"
-            }
 tall        = renamed [Replace "tall"]
-            -- $ smartBorders
-            -- $ subLayout [] (smartBorders Simplest)
             $ limitWindows 12
             $ mySpacing 8
             $ Tall 1 (3/100) (1/2)
-monocle    = renamed [Replace "monocle"]
-            -- $ smartBorders
-            -- $ subLayout [] (smartBorders Simplest)
+monocle     = renamed [Replace "monocle"]
             $ limitWindows 20 Full
 floats      = renamed [Replace "floats"]
-            $ smartBorders
             $ limitWindows 20 simplestFloat
 
     -- Layout hook preferences
@@ -153,7 +142,7 @@ myLayoutHook = avoidStruts
              -- $ windowArrange
              $ T.toggleLayouts floats
              $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
-             where myDefaultLayout = withBorder myBorderWidth tall ||| monocle ||| floats
+             where myDefaultLayout = withBorder myBorderWidth tall ||| withBorder myBorderWidth monocle ||| withBorder myBorderWidth floats
 
     -- Workspaces
 myWorkspaces        = [" dev ", " sys ", " www ", " cht ", " gms ", " xtr ", "7", "8", "9"]
@@ -161,10 +150,10 @@ myWorkspaces        = [" dev ", " sys ", " www ", " cht ", " gms ", " xtr ", "7"
     -- Manage hook
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-             [ className  =? "steam"           --> doShift ( myWorkspaces !! 4 )
+             [ title      =? "steam"           --> doShift ( myWorkspaces !! 4 )
              , className  =? "discord"         --> doShift ( myWorkspaces !! 3 )
-             , (className =? "firefox"         <&&> resource =? "Dialog") --> doFloat
-             ,className   =? "confirm"         --> doFloat
+             ,(className  =? "firefox"         <&&> resource =? "Dialog") --> doFloat
+             , className  =? "confirm"         --> doFloat
              , className  =? "file_progress"   --> doFloat
              , className  =? "dialog"          --> doFloat
              , className  =? "download"        --> doFloat
@@ -204,8 +193,11 @@ myKeys =
         -- Programs
     , ("M-<Return>", spawn myTerminal)
     , ("M-b",        spawn myBrowser)
-    , ("M-e v",      spawn myEditor)
-    , ("M-e h",      spawn myHtop)
+    , ("M-S-p",      spawn "pavucontrol")
+    , ("M-t e",      spawn myEditor)
+    , ("M-t h",      spawn (myTerminal ++ " -e htop"))
+    , ("M-t c",      spawn (myTerminal ++ " -e cava"))
+    , ("M-t a",      spawn myGeminiBrowser)
 
         -- Kill windows
     , ("M-C-q", killAll)
@@ -235,7 +227,7 @@ myKeys =
 main :: IO()
 main = do
     xmproc <- spawnPipe "xmobar" -- "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"
-    xmonad $ ewmh def
+    xmonad $ ewmh $ ewhmFullscreen def
         { manageHook = myManageHook <+> manageDocks
         , handleEventHook     = handleEventHook def <+> docksEventHook
         , startupHook         = myStartupHook

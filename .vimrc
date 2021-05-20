@@ -2,17 +2,16 @@ syntax on
 set nocompatible
 set laststatus=2
 
-colorscheme onedark
-
-if !has('gui_running')
-        set t_Co=256
-endif
-
 if has('nvim')
     " neovim specific run commands
     set spell
+    colorscheme nord
 else
     " standard vim commands
+    colorscheme onedark
+    if !has('gui_running')
+        set t_Co=256
+    endif
 endif
 
 set noshowmode " as statusbar shows the mode we are in
