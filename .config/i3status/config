@@ -1,0 +1,30 @@
+general {
+    output_format = "i3bar"
+    colors = false
+    interval = 1
+    markup = pango
+}
+
+order += "cpu_usage"
+#order += "ethernet enp4s0"
+order += "memory"
+#order += "volume master"
+order += "tztime local"
+
+cpu_usage {
+    format = "<span background='#bf616a'>  cpu usage: %usage </span>"
+}
+
+ethernet enp4s0 {
+    format_up = "%ip (%speed)"
+    format_down = "down"
+}
+
+memory {
+    format = "<span background='#d08770'>  memory usage: %percentage_used </span>"
+}
+
+tztime local {
+    format = "<span background='#ebcb8b'> %time </span>"
+    format_time = " date: %d-%m-%Y %H:%M"
+}
