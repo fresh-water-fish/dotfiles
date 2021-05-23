@@ -1,30 +1,43 @@
 general {
     output_format = "i3bar"
-    colors = false
+    colors = true
     interval = 1
     markup = pango
 }
 
+# colour nord: #2e3440 #3b4252 #434c5e #4c566a
+# colour aurora: #bf616a #d08770 #ebcb8b #a3be8c #b48ead
+
 order += "cpu_usage"
-#order += "ethernet enp4s0"
 order += "memory"
-#order += "volume master"
+order += "volume master"
+order += "ethernet enp4s0"
 order += "tztime local"
 
 cpu_usage {
-    format = "<span background='#bf616a'>  cpu usage: %usage </span>"
-}
-
-ethernet enp4s0 {
-    format_up = "%ip (%speed)"
-    format_down = "down"
+    format = "<span background='#bf616a' foreground='#2e3440'>  </span><span background='#4c566a' foreground='#bf616a'>  %usage  </span>"
+    max_threshold = 75
+    format_above_threshold = "<span background='#bf616a' foreground='#4c566a'>  </span><span background='#bf616a' foreground='#4c566a'>  %usage  </span>"
 }
 
 memory {
-    format = "<span background='#d08770'>  memory usage: %percentage_used </span>"
+    format = "<span background='#d08770' foreground='#2e3440' >  </span><span background='#4c566a' foreground='#d08770'> %used </span>"
+}
+
+volume master {
+    device = "pulse"
+    mixer = "Master"
+    mixer_idx = 0
+    format = "<span background='#ebcb8b' foreground='#2e3440'> 墳 </span><span background='#4c566a' foreground='#ebcb8b'> %volume </span>"
+    format_muted = "<span background='#ebcb8b' foreground='#2e3440'> 婢 </span>"
+}
+
+ethernet enp4s0 {
+    format_up = "<span background='#a3be8c' foreground='#2e3440'>  </span><span background='#4c566a' foreground='#a3be8c'> %ip </span>"
+    format_down = "<span background='#a3be8c' foreground='#2e3440'>  </span>"
 }
 
 tztime local {
-    format = "<span background='#ebcb8b'> %time </span>"
-    format_time = " date: %d-%m-%Y %H:%M"
+    format_time = "%d-%m-%Y %H:%M"
+    format = "<span background='#b48ead' foreground='#2e3440'>  </span><span background='#4c566a' foreground='#b48ead'> %time </span>"
 }
