@@ -11,7 +11,7 @@ http = ['firefox']
 search = "gemini://gus.guru/search"
 left_margin = 0.05
 max_width = 100
-#downloads =
+downloads = "/home/seb/Downloads"
 page_max_size = 2097152  # 2 MiB
 page_max_time = 10
 emoji_favicons = true
@@ -35,8 +35,8 @@ scrollbar = "always"
 [keybindings]
 # Whitespace is not allowed in keybindings
 bind_tab1 = "!"
-bind_tab2 = "@"
-bind_tab3 = "#"
+bind_tab2 = '"'
+bind_tab3 = "£"
 bind_tab4 = "$"
 bind_tab5 = "%"
 bind_tab6 = "^"
@@ -74,7 +74,7 @@ bind_close_tab    = "q"
 bind_next_tab     = "J"
 bind_prev_tab     = "K"
 bind_quit         = "Q"
-#bind_help         = "" 
+#bind_help         = ""
 #bind_sub          = ""
 #bind_add_sub      = ""
 
@@ -223,23 +223,23 @@ entries_per_page = 20
 #   bkmk = bookmark
 #   modal = a popup window/box in the middle of the screen
 
-bg = "#282c34"
-tab_num = "#3071db"
-tab_divider = "#5699af" 
-bottombar_label = "#98be65" 
-bottombar_text = "#7d7d7d" 
-bottombar_bg = "#202328" 
-hdg_1 = "#ff6c6b" 
-hdg_2 = "#51afef" 
-hdg_3 = "#4669ff" 
-amfora_link = "#c678dd" 
-foreign_link = "#98be65" 
-link_number = "#7d7d7d" 
-regular_text = "#ffffff" 
-quote_text = "#a9a1e1" 
-preformatted_text = "#ecbe7b" 
-list_text = "#bbc2cf"
-scrollbar = "#51afef"
+bg = "#2e3440"
+tab_num = "#4c566a"
+tab_divider = "#4c566a"
+bottombar_label = "#a3be8c"
+bottombar_text = "#a3be8c"
+bottombar_bg = "#4c566a"
+hdg_1 = "#bf616a"
+hdg_2 = "#d08770"
+hdg_3 = "#ebcb8b"
+amfora_link = "#a3be8c"
+foreign_link = "#bf616a"
+link_number = "#4c566a"
+regular_text = "#eceff4"
+quote_text = "#a3be8c"
+preformatted_text = "#4c566a"
+list_text = "#4c566a"
+scrollbar = "#4c566a"
 
 # btn_bg: The bg color for all modal buttons
 # btn_text: The text color for all modal buttons
