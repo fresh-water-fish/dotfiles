@@ -7,7 +7,7 @@ set $mod Mod4
 set $myTerm alacritty
 set $myBrowser firefox
 set $myGemini alacritty -e amfora
-set $myfm kitty -e ranger
+set $myfm pcmanfm
 
 # workspace names and order
 set $ws1 "1:dev"
@@ -157,9 +157,10 @@ bindsym $mod+a focus parent
 mode "open" {
     # These bindings trigger in open mode and can quickly open a
     # wider set of programs
-    bindsym d exec discord
-    bindsym g exec steam
-    bindsym s exec spotify
+    bindsym d exec discord; mode "default"
+    bindsym g exec steam; mode "default"
+    bindsym s exec spotify; mode "default"
+    bindsym r exec kitty -e ranger; mode "default"
 
     bindsym Escape mode "default"
     bindsym $mod+o mode "default"
