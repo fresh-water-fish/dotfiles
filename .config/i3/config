@@ -6,6 +6,8 @@
 set $mod Mod4
 set $myTerm alacritty
 set $myBrowser firefox
+set $myGemini alacritty -e amfora
+set $myfm kitty -e ranger
 
 # workspace names and order
 set $ws1 "1:dev"
@@ -76,6 +78,12 @@ bindsym $mod+q kill
 
     # start browser
     bindsym $mod+b exec $myBrowser
+
+    # start gemini browser
+    bindsym $mod+Shift+b exec $myGemini
+
+    # start file manager
+    bindsym $mod+n exec $myfm
 
 # window management
     # change focus
