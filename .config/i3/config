@@ -52,6 +52,8 @@ font pango:Source Code Pro 9
 # Autostart programs
 exec nitrogen --restore &
 exec redshift &
+exec picom &
+exec xrandr --output DP-0 -s 1920x1080 -r 144.00
 
 # --------------------------------
 # ---- Keybinds ------------------
