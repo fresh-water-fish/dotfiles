@@ -4,7 +4,6 @@ set laststatus=2
 
 if has('nvim')
     " neovim specific run commands
-    set spell
     colorscheme nord
 else
     " standard vim commands
