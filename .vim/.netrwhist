@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/seb/.config/nvim/lua'
+let g:netrw_dirhist_7='/home/seb/.config/nvim'
+let g:netrw_dirhist_6='/home/seb/.config/nvim/lua'
+let g:netrw_dirhist_5='/home/seb/.config/nvim'
 let g:netrw_dirhist_4='/home/seb/Images/Backgrounds'
 let g:netrw_dirhist_3='/home/seb/.local/share/openrazer/logs'
 let g:netrw_dirhist_2='/usr/lib/modprobe.d'
