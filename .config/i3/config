@@ -50,7 +50,7 @@ set $ws10 "10:vm"
 font pango:Source Code Pro 9
 
 # Autostart programs
-exec nitrogen --restore &
+exec nitrogen --set-zoom-fill ~/Images/Backgrounds/snowforest.jpg &
 exec redshift &
 
 # --------------------------------
