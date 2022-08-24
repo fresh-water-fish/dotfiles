@@ -1,1 +1,2 @@
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias kmd="/home/seb/tools/squashfs-root/usr/local/bin/./kmd -e &"
