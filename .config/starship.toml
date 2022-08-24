@@ -1,0 +1,7 @@
+# ~/.config/starship.toml
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[➜ ](green)"
